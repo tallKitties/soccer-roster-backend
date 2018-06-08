@@ -23,8 +23,4 @@ class Player < ApplicationRecord
   validates :position, presence: true,
                        inclusion: { in: Player.positions,
                                     message: "%{value} is not a valid position" }
-
-  def successful
-    attributes.merge(success: true)
-  end
 end

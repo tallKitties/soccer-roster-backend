@@ -5,7 +5,7 @@ module API
 
       # GET /api/players
       def index
-        @players = Player.all
+        @players = Player.order(:position)
         if @players
           render json: @players, status: :ok
         else
@@ -16,20 +16,20 @@ module API
       # GET /api/players/1
       def show
         return render_not_found unless @player
-        render json: @player.successful, status: :ok
+        render json: @player, status: :ok
       end
 
       # POST /api/players
       def create
         @player = Player.new(player_params)
         return render_error unless @player.save
-        render json: @player.successful, status: :created
+        render json: @player, status: :created
       end
 
       # PATCH/PUT /api/players/1
       def update
         return render_error unless @player.update(player_params)
-        render json: { success: true }, status: :ok
+        render json: @player, status: :ok
       end
 
       # DELETE /api/players/1
@@ -52,15 +52,15 @@ module API
       end
 
       def render_not_found
-        render json:  { error: "ID #{params[:id]} not found.",
-                        success: false
+        render json:  { success: false,
+                        error: "ID #{params[:id]} not found."
                       },
                       status: :unprocessable_entity
       end
 
       def render_error
-        render json:  { error: @player.errors,
-                        success: false
+        render json:  { success: false,
+                        error: @player.errors
                       },
                       status: :unprocessable_entity
       end
