@@ -40,7 +40,7 @@ module API
       end
 
       def positions
-        render json: { postions: Player.positions }, status: :ok
+        render json: { positions: Player.positions }, status: :ok
       end
 
       private

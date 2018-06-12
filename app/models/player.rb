@@ -13,7 +13,6 @@ class Player < ApplicationRecord
       'goalkeeper',
       'striker',
       'left midfielder',
-      'defensive midfielder',
       'left back',
       'stopper',
       'sweeper'
