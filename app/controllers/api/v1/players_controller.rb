@@ -39,6 +39,10 @@ module API
         render json: { success: true }, status: :ok
       end
 
+      def positions
+        render json: { postions: Player.positions }, status: :ok
+      end
+
       private
 
       # Use callbacks to share common setup or constraints between actions.
