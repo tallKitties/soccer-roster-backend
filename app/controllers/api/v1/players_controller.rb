@@ -5,7 +5,7 @@ module API
 
       # GET /api/players
       def index
-        @players = Player.order(:position)
+        @players = Player.order(:last_name)
         if @players
           render json: @players, status: :ok
         else
