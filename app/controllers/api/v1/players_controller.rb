@@ -5,7 +5,9 @@ module API
 
       # GET /api/players
       def index
-        @players = Player.order(:last_name)
+        logger.debug "params are #{params.inspect}"
+        @players = Player.search(params).order(:last_name)
+
         if @players
           render json: @players, status: :ok
         else
